@@ -75,7 +75,7 @@ let warned = false;
 // AssertionError's when particular conditions are not met. The
 // assert module must conform to the following interface.
 
-const assert = module.exports = ok;
+const assert = ok;
 
 const NO_EXCEPTION_SENTINEL = {};
 
@@ -117,7 +117,7 @@ function fail(actual, expected, message, operator, stackStartFn) {
 
   if (message instanceof Error) throw message;
 
-  const errArgs = {
+  const errArgs:{ actual, expected, operator, stackStartFn, message? } = {
     actual,
     expected,
     operator: operator === undefined ? 'fail' : operator,
